@@ -43,9 +43,10 @@
         return YES;
         
     } else{
-        
-        return NO;
-        
+        // In case of url format: /<video_id>/<video> strip the last part and try again
+        NSString* newURL = [vimeoURL stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"/%@", vimeoVideoID] withString:@""];
+
+        return [self validateVimeoURL:newURL];
     }
 
     return NO;
